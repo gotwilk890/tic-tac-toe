@@ -1,0 +1,26 @@
+body{
+  background-color: black;
+}
+
+.title {
+  height: 100px;
+  width: 600px;
+  margin: auto;
+  background-color: green;
+  text-align: center;
+}
+
+.game-board {
+  height: 500px;
+  width: 600px;
+  margin: auto;
+  background-color: red;
+}
+
+.scoreboard {
+  height: 50px;
+  width: 600px;
+  margin: auto;
+  background-color: blue;
+
+}
