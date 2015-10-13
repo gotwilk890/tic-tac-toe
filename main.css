@@ -1,5 +1,5 @@
 body{
-  background-color: black;
+  background-image: url("Note-paper.jpg");
 }
 
 .title {
@@ -11,16 +11,71 @@ body{
 }
 
 .game-board {
-  height: 500px;
-  width: 600px;
+  height: 450px;
+  width: 537px;
   margin: auto;
-  background-color: red;
+  margin-top: 20px;
+  padding-left: 45px;
+  padding-top: 60px;
+  /*background-color: black;*/
+
 }
 
 .scoreboard {
   height: 50px;
   width: 600px;
   margin: auto;
+  margin-top: 20px;
   background-color: blue;
+}
+
+.game-board > * {
+  height: 30%;
+  width: 30%;
+  float: left;
+  border-color: black;
+  border-width: 10px;
+/* background-color: yellow;*/
+}
+
+.game-board > * hover: {
+  background-color: black;
+}
+
+.bl_1{
+  border-style: hidden;
+}
+.bl_2{
+  border-style: hidden hidden hidden solid;
+}
+.bl_3{
+  border-style: hidden hidden hidden solid;
+}
+.bl_4{
+  border-style: solid hidden solid hidden;
+  clear: both;
+}
+.bl_5{
+  border-style: solid;
+}
+.bl_6{
+  border-style: solid hidden solid hidden;
+}
+.bl_7{
+  border-style: hidden hidden hidden hidden;
+  clear: both;
 
 }
+.bl_8{
+  border-style: hidden solid hidden solid;
+}
+.bl_9{
+  border-style: hidden;
+}
+
+
+
+
+
+
+
