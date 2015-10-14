@@ -26,7 +26,12 @@ var playerTurn = function playerTurn(){
       gameArray.push($(this).text());
     });
   }
-  console.log("There isa " + winnerIsX(player));
+  // if(winnerIsX(player) || turns === 9){
+  //   (clearBoard());
+  // }
+
+
+  console.log("There is a " + winnerIsX(player));
 };
 
 
@@ -59,8 +64,25 @@ var winsDiagonalX = function winsDiagonalX(player) {
 
 var winnerIsX = function winnerIsX(player) {
   if(winsRowX(player) || winsColumnX(player) || winsDiagonalX(player)){
+    $(".title h2").text("The winner is " + player);
+
     return player;
+  }
+  else if(turns === 9){
+    $(".title h2").text("Cats Game");
   }
 };
 
+var clearBoard = function clearBoard(){
+    $("#cells div").text("");
+    turns = 0;
+  }
+
+
+
 $("#cells div").click(playerTurn);
+$("#cells").click(function(){
+  if(winnerIsX(player) || turns === 9){
+    clearBoard();
+  };
+});
