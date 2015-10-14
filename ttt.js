@@ -4,6 +4,8 @@ var turns = 0;
 var player = "o"
 var gameArray = [];
 var winner;
+var xScore = 0;
+var oScore = 0;
 var playerTurn = function playerTurn(){
   gameArray = [];
 
@@ -27,14 +29,9 @@ var playerTurn = function playerTurn(){
       gameArray.push($(this).text());
     });
   }
-
-  // if(getWinner(player) || turns === 9){
-  //   (clearBoard());
-  // }
-
   winner = getWinner(player);
-  console.log("There is a " + getWinner(player));
 };
+
 
 
 //gameArray:
@@ -68,6 +65,14 @@ var getWinner = function getWinner(player) {
      if(winsRow(player) || winsColumn(player)  || winsDiagonal(player)){
       $(".title h2").text("The winner is " +  player);
       $("#cells div").css("pointer-events", "none");
+      if(player === "x"){
+        xScore++;
+      }
+      else if(player === "o"){
+        oScore++;
+      }
+      $("#xScore").text("Player X Wins: " + xScore);
+      $("#oScore").text("Player O Wins: " + oScore);
       return player;
     }
     else if(turns === 9){
@@ -77,6 +82,7 @@ var getWinner = function getWinner(player) {
 
 var clearBoard = function clearBoard(){
     $("#cells div").text("");
+    $(".title h2").text("");
     turns = 0;
   }
 
@@ -85,9 +91,9 @@ $(document).ready(function function_name (argument) {
   // body...
   $("#cells div").click(playerTurn);
   $("#clear").click(function(){
-    if(getWinner(player) || turns === 9){
+    // if(getWinner(player) || turns === 9){
       clearBoard();
-    };
-    $("#cells div").css("pointer-events", "auto");
+      $("#cells div").css("pointer-events", "auto");
+    // };
   });
 });

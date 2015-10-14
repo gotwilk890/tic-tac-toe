@@ -27,8 +27,19 @@ body{
   margin: auto;
   margin-top: 20px;
   background-color: blue;
-
 }
+
+.scoreboard > * {
+  float: left;
+  margin-left: 50px;
+  margin-right: 25px;
+}
+
+.cb{
+
+  margin-top: 15px;
+}
+
 
 .game-board > * {
   height: 30%;
