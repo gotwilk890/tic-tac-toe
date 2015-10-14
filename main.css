@@ -1,23 +1,41 @@
+@font-face {
+    font-family: justKidding;
+    src: url(justkidding.ttf);
+}
+
+@font-face {
+    font-family: ox;
+    src: url(101.ttf);
+}
+
 body{
-  background-image: url("Note-paper.jpg");
+  background-image: url("http://2.bp.blogspot.com/-S0ynf99s0_Q/Ui_9A1SNtwI/AAAAAAAAAgU/9DpT2bPUcFM/s1600/Textures+Notebook+Paper+Backgrounds.jpg");
 }
 
 .title {
   height: 100px;
-  width: 600px;
+  width: auto;
   margin: auto;
-  background-color: green;
+  /*background-color: green;*/
   text-align: center;
+  font-family: justKidding;
+  font-size: 40px;
 }
+
+.title > *{
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+}
+
 
 .game-board {
   height: 450px;
   width: 537px;
   margin: auto;
-  margin-top: 20px;
-  padding-left: 45px;
+  padding-left: 35px;
   padding-top: 60px;
-  /*background-color: black;*/
+/*  background-color: black;*/
 
 }
 
@@ -50,6 +68,8 @@ body{
   text-align: center;
   vertical-align: middle;
   font-size: 600%;
+  font-family: ox;
+  padding-top: 10px;
 /* background-color: yellow;*/
 }
 
