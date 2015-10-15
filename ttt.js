@@ -71,8 +71,8 @@ var getWinner = function getWinner(player) {
       else if(player === "o"){
         oScore++;
       }
-      $("#xScore").text("Player X Wins: " + xScore);
-      $("#oScore").text("Player O Wins: " + oScore);
+      $("#xScore").text("X Wins: " + xScore);
+      $("#oScore").text("O Wins: " + oScore);
       return player;
     }
     else if(turns === 9){

@@ -44,18 +44,22 @@ body{
   width: 600px;
   margin: auto;
   margin-top: 20px;
-  background-color: blue;
+/*  background-color: blue;*/
 }
 
 .scoreboard > * {
   float: left;
-  margin-left: 50px;
+  margin-left: 45px;
   margin-right: 25px;
+  font-family: ox;
 }
 
 .cb{
 
   margin-top: 15px;
+  border-color: black;
+  border-width: 1px;
+  background-color: white;
 }
 
 
