@@ -8,7 +8,7 @@ var xScore = 0;
 var oScore = 0;
 var playerTurn = function playerTurn(){
   gameArray = [];
-
+var game = {};
 
   if($(this).is(':empty')){
     if(player === "o"){
