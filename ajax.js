@@ -14,7 +14,6 @@ var tttapi = {
   register: function register(credentials, callback) {
     this.ajax({
       method: 'POST',
-      // url: 'http://httpbin.org/post',
       url: this.ttt + '/users',
       contentType: 'application/json; charset=utf-8',
       data: JSON.stringify(credentials),
@@ -25,7 +24,6 @@ var tttapi = {
   login: function login(credentials, callback) {
     this.ajax({
       method: 'POST',
-      // url: 'http://httpbin.org/post',
       url: this.ttt + '/login',
       contentType: 'application/json; charset=utf-8',
       data: JSON.stringify(credentials),
