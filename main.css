@@ -12,6 +12,11 @@ body{
   background-image: url("http://2.bp.blogspot.com/-S0ynf99s0_Q/Ui_9A1SNtwI/AAAAAAAAAgU/9DpT2bPUcFM/s1600/Textures+Notebook+Paper+Backgrounds.jpg");
 }
 
+form {
+  text-align: center;
+}
+
+
 .title {
   height: 100px;
   width: auto;

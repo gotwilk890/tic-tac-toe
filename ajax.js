@@ -15,6 +15,7 @@ var tttapi = {
   register: function register(credentials, callback) {
     this.ajax({
       method: 'POST',
+      // url: 'http://httpbin.org/post',
       url: this.ttt + '/users',
       contentType: 'application/json; charset=utf-8',
       data: JSON.stringify(credentials),
@@ -25,6 +26,7 @@ var tttapi = {
   login: function login(credentials, callback) {
     this.ajax({
       method: 'POST',
+      // url: 'http://httpbin.org/post',
       url: this.ttt + '/login',
       contentType: 'application/json; charset=utf-8',
       data: JSON.stringify(credentials),
@@ -147,8 +149,7 @@ $(function() {
       }
       callback(null, data);
       $('.token').val(data.user.token);
-      game.token = $('.token').val();
-
+      game.token = data.user.token;
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
@@ -162,19 +163,17 @@ $(function() {
 
   $('#create-game').on('submit', function(e) {
     var token = $(this).children('[name="token"]').val();
-    e.preventDefault();
-    tttapi.createGame(token, function(error, data){
+    var cb = function cb(error, data) {
       if (error) {
-      console.error(error);
-      $('#result').val('status: ' + error.status + ', error: ' +error.error);
-      return;
+        callback(error);
+        return;
+      }
+      callback(null, data);
+      game.id = data.game.id;
     }
-    $('#result').val(JSON.stringify(data, null, 4));
-    game.id = data.game.id;
 
-    });
-
-
+    e.preventDefault();
+    tttapi.createGame(token, cb);
   });
 
   $('#show-game').on('submit', function(e) {
@@ -191,12 +190,18 @@ $(function() {
     tttapi.joinGame(id, token, callback);
   });
 
-  $('#mark-cell').on('submit', function(e) {
-    var token = $(this).children('[name="token"]').val();
-    var id = $('#mark-id').val();
-    var data = wrap('game', wrap('cell', form2object(this)));
+  $("#cells div").click(function(e) {
+    // var token = $(this).children('[name="token"]').val();
+    var token = game.token;
+    var id = game.id;
+    var index = $(this).index();
+    var value = $(this).html();
+    var data = wrap('game', wrap('cell', {index: index, value: value}));
+
+
     e.preventDefault();
-    tttapi.markCell(id, data, token, callback);
+    tttapi.markCell(id, data, token,callback );
+
   });
 
   $('#watch-game').on('submit', function(e){

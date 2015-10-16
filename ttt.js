@@ -6,9 +6,12 @@ var gameArray = [];
 var winner;
 var xScore = 0;
 var oScore = 0;
-var playerTurn = function playerTurn(){
-  gameArray = [];
 var game = {};
+
+
+var playerTurn = function playerTurn(){
+gameArray = [];
+
 
   if($(this).is(':empty')){
     if(player === "o"){
@@ -25,11 +28,14 @@ var game = {};
       console.log(turns);
       player = "o";
     }
+
+
     $('#cells div').each(function(){
-      gameArray.push($(this).text());
+     gameArray.push($(this).text());
     });
+    winner = getWinner(player);
   }
-  winner = getWinner(player);
+
 };
 
 
@@ -96,4 +102,5 @@ $(document).ready(function function_name (argument) {
       $("#cells div").css("pointer-events", "auto");
     // };
   });
+
 });
