@@ -138,6 +138,7 @@ $(function() {
     var credentials = wrap('credentials', form2object(this));
     tttapi.register(credentials, callback);
     e.preventDefault();
+    $('#register').trigger("reset");
   });
 
   $('#login').on('submit', function(e) {
@@ -155,6 +156,7 @@ $(function() {
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
+    $('#login').trigger("reset");
   });
 
   $('#list-games').on('submit', function(e) {
