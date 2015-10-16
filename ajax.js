@@ -2,7 +2,7 @@
 var game = {};
 var tttapi = {
   gameWatcher: null,
-  ttt: 'http://ttt.wdibos.com',
+  ttt: 'https://d64d8f8d.ngrok.io',
 
   ajax: function(config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
@@ -150,6 +150,8 @@ $(function() {
       callback(null, data);
       $('.token').val(data.user.token);
       game.token = data.user.token;
+      $('.scoreboard').show('slow');
+
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
@@ -160,9 +162,9 @@ $(function() {
     e.preventDefault();
     tttapi.listGames(token, callback);
   });
-
-  $('#create-game').on('submit', function(e) {
-    var token = $(this).children('[name="token"]').val();
+//create game
+  $("#clear").click(function(e){
+    var token = game.token
     var cb = function cb(error, data) {
       if (error) {
         callback(error);
@@ -170,6 +172,7 @@ $(function() {
       }
       callback(null, data);
       game.id = data.game.id;
+      $('.game-board').show('slow');
     }
 
     e.preventDefault();
@@ -204,27 +207,27 @@ $(function() {
 
   });
 
-  $('#watch-game').on('submit', function(e){
-    var token = $(this).children('[name="token"]').val();
-    var id = $('#watch-id').val();
-    e.preventDefault();
+  // $('#watch-game').on('submit', function(e){
+  //   var token = $(this).children('[name="token"]').val();
+  //   var id = $('#watch-id').val();
+  //   e.preventDefault();
 
-    var gameWatcher = tttapi.watchGame(id, token);
+  //   var gameWatcher = tttapi.watchGame(id, token);
 
-    gameWatcher.on('change', function(data){
-      var parsedData = JSON.parse(data);
-      if (data.timeout) { //not an error
-        this.gameWatcher.close();
-        return console.warn(data.timeout);
-      }
-      var gameData = parsedData.game;
-      var cell = gameData.cell;
-      $('#watch-index').val(cell.index);
-      $('#watch-value').val(cell.value);
-    });
-    gameWatcher.on('error', function(e){
-      console.error('an error has occured with the stream', e);
-    });
-  });
+  //   gameWatcher.on('change', function(data){
+  //     var parsedData = JSON.parse(data);
+  //     if (data.timeout) { //not an error
+  //       this.gameWatcher.close();
+  //       return console.warn(data.timeout);
+  //     }
+  //     var gameData = parsedData.game;
+  //     var cell = gameData.cell;
+  //     $('#watch-index').val(cell.index);
+  //     $('#watch-value').val(cell.value);
+  //   });
+  //   gameWatcher.on('error', function(e){
+  //     // console.error('an error has occured with the stream', e);
+  //   });
+  // });
 
 });

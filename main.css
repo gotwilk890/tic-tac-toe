@@ -40,6 +40,7 @@ form {
   margin: auto;
   padding-left: 35px;
   padding-top: 60px;
+  display: none;
 /*  background-color: black;*/
 
 }
@@ -49,6 +50,7 @@ form {
   width: 600px;
   margin: auto;
   margin-top: 20px;
+  display:none;
 /*  background-color: blue;*/
 }
 
