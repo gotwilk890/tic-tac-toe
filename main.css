@@ -20,8 +20,6 @@ form {
 .title {
   height: 100px;
   width: auto;
-  margin: auto;
-  /*background-color: green;*/
   text-align: center;
   font-family: justKidding;
   font-size: 40px;
@@ -41,8 +39,6 @@ form {
   padding-left: 35px;
   padding-top: 60px;
   display: none;
-/*  background-color: black;*/
-
 }
 
 .scoreboard {
@@ -51,7 +47,6 @@ form {
   margin: auto;
   margin-top: 20px;
   display:none;
-/*  background-color: blue;*/
 }
 
 .scoreboard > * {
@@ -81,7 +76,6 @@ form {
   font-size: 600%;
   font-family: ox;
   padding-top: 10px;
-/* background-color: yellow;*/
 }
 
 .bl_1{

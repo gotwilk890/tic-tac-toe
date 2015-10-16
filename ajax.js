@@ -1,8 +1,10 @@
 'use strict';
+//stores a token and game ID for function use
 var game = {};
+
 var tttapi = {
   gameWatcher: null,
-  ttt: 'https://d64d8f8d.ngrok.io',
+  ttt: 'http://ttt.wdibos.com',
 
   ajax: function(config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
@@ -109,6 +111,7 @@ var tttapi = {
 
 //$(document).ready(...
 $(function() {
+  //converts answerrs from form into a readable object for bac end
   var form2object = function(form) {
     var data = {};
     $(form).children().each(function(index, element) {
@@ -119,12 +122,13 @@ $(function() {
     });
     return data;
   };
+  // formats info into readable back end data
   var wrap = function wrap(root, formData) {
     var wrapper = {};
     wrapper[root] = formData;
     return wrapper;
   };
-
+  // runs to catch errors and sends reults to a result block for testing.
   var callback = function callback(error, data) {
     if (error) {
       console.error(error);
@@ -133,14 +137,15 @@ $(function() {
     }
     $('#result').val(JSON.stringify(data, null, 4));
   };
-
+//sends registration info and creates a user on the server
   $('#register').on('submit', function(e) {
     var credentials = wrap('credentials', form2object(this));
     tttapi.register(credentials, callback);
     e.preventDefault();
     $('#register').trigger("reset");
   });
-
+//sends login info to server and when server sends back unique token
+//for user stores it for other functional use.
   $('#login').on('submit', function(e) {
     var credentials = wrap('credentials', form2object(this));
     var cb = function cb(error, data) {
@@ -151,6 +156,7 @@ $(function() {
       callback(null, data);
       $('.token').val(data.user.token);
       game.token = data.user.token;
+      //reveals scoreboard and NEW GAME button to user upon login
       $('.scoreboard').show('slow');
 
     };
@@ -158,13 +164,17 @@ $(function() {
     tttapi.login(credentials, cb);
     $('#login').trigger("reset");
   });
+//---------------------------------------------------------------------
+//Ran out of time to implement this for presentation may get back to it.
+  // $('#list-games').on('submit', function(e) {
+  //   var token = $(this).children('[name="token"]').val();
+  //   e.preventDefault();
+  //   tttapi.listGames(token, callback);
+  // });
+//----------------------------------------------------------------------
 
-  $('#list-games').on('submit', function(e) {
-    var token = $(this).children('[name="token"]').val();
-    e.preventDefault();
-    tttapi.listGames(token, callback);
-  });
-//create game
+//create game when NEW GAME button is clicked.
+//sends new game board to server.
   $("#clear").click(function(e){
     var token = game.token
     var cb = function cb(error, data) {
@@ -174,6 +184,7 @@ $(function() {
       }
       callback(null, data);
       game.id = data.game.id;
+      //reveals game-board to play game on
       $('.game-board').show('slow');
     }
 
@@ -181,22 +192,28 @@ $(function() {
     tttapi.createGame(token, cb);
   });
 
-  $('#show-game').on('submit', function(e) {
-    var token = $(this).children('[name="token"]').val();
-    var id = $('#show-id').val();
-    e.preventDefault();
-    tttapi.showGame(id, token, callback);
-  });
+//-----------------------------------------------------------
+//Ran out of time to implement this for presentation may get back to it.
+  // $('#show-game').on('submit', function(e) {
+  //   var token = $(this).children('[name="token"]').val();
+  //   var id = $('#show-id').val();
+  //   e.preventDefault();
+  //   tttapi.showGame(id, token, callback);
+  // });
+//------------------------------------------------------------
 
-  $('#join-game').on('submit', function(e) {
-    var token = $(this).children('[name="token"]').val();
-    var id = $('#join-id').val();
-    e.preventDefault();
-    tttapi.joinGame(id, token, callback);
-  });
+//-----------------------------------------------------------
+//Ran out of time to implement this for presentation may get back to it.
+  // $('#join-game').on('submit', function(e) {
+  //   var token = $(this).children('[name="token"]').val();
+  //   var id = $('#join-id').val();
+  //   e.preventDefault();
+  //   tttapi.joinGame(id, token, callback);
+  // });
+//------------------------------------------------------------
 
+//when game cells are clicked sends updated gmaeboard to server
   $("#cells div").click(function(e) {
-    // var token = $(this).children('[name="token"]').val();
     var token = game.token;
     var id = game.id;
     var index = $(this).index();
@@ -209,6 +226,8 @@ $(function() {
 
   });
 
+//-----------------------------------------------------------
+//Ran out of time to implement this for presentation may get back to it.
   // $('#watch-game').on('submit', function(e){
   //   var token = $(this).children('[name="token"]').val();
   //   var id = $('#watch-id').val();
@@ -231,5 +250,5 @@ $(function() {
   //     // console.error('an error has occured with the stream', e);
   //   });
   // });
-
+//------------------------------------------------------------
 });
